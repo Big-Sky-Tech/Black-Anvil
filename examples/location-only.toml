@@ -1,0 +1,4 @@
+# Installation Directory Only Configuration  
+# Only specifies where to install, prompts for other options
+
+install_dir = "./custom-install"

@@ -1,0 +1,7 @@
+# Portable Installation Configuration
+# Creates a portable installation for distribution
+
+project_path = "."
+build_type = "release"
+install_dir = "./portable"
+vendor = true

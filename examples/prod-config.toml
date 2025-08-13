@@ -1,0 +1,7 @@
+# Production Configuration
+# Optimized builds for production deployment
+
+project_path = "."
+build_type = "release"
+install_dir = "./prod-install"
+vendor = true

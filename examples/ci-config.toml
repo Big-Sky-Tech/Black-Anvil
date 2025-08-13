@@ -1,0 +1,7 @@
+# Continuous Integration Configuration
+# For automated builds in CI/CD pipelines
+
+project_path = "."
+build_type = "release"
+install_dir = "./artifacts"
+vendor = true
