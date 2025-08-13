@@ -20,13 +20,11 @@ target
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-
 # Added by cargo
-
 /target
 .DS_Store
 
-# Black Anvil specific
+# Black Anvil specific installation directories
 vendor/
 **/vendor/
 install/
@@ -37,9 +35,55 @@ prod-install/
 **/prod-install/
 offline-install/
 **/offline-install/
-partial-test/
-**/partial-test/
-portable/
-**/portable/
+offline-deployment/
+**/offline-deployment/
+portable-app/
+**/portable-app/
+portable-install/
+**/portable-install/
 artifacts/
 **/artifacts/
+dist/
+**/dist/
+build/
+**/build/
+staging-install/
+**/staging-install/
+custom-install/
+**/custom-install/
+
+# Tauri specific
+tauri-app/src-tauri/target/
+tauri-app/dist/
+tauri-app/node_modules/
+tauri-app/package-lock.json
+tauri-app/.npmrc
+
+# Development files
+*.log
+*.tmp
+temp/
+**/temp/
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary configuration files
+test-config.toml
+tmp-config.toml
+local-config.toml
+my-config.toml
+
+# Starlark cache and temporary files
+*.star.cache
+__pycache__/
+*.pyc

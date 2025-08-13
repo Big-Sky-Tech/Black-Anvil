@@ -1,13 +1,198 @@
 # Black Anvil
 
-Black Anvil is an experimental Rust-based installer that compiles and installs Rust
-projects. It provides a simple interactive command-line interface to choose build
-options and installation path, then invokes `cargo build` and copies the resulting
-binary to the selected location.
+**A powerful, extensible Rust project builder and installer with Starlark scripting and modern UI**
 
-This is an early prototype focusing on compiling Rust code before installation.
-Future versions aim to provide a richer graphical interface and support for other
-languages and packaging formats.
+Black Anvil is an advanced Rust-based build and installation tool that combines the flexibility of command-line automation with the power of embedded scripting and modern graphical interfaces. It provides multiple ways to build, configure, and install Rust projects with support for complex deployment scenarios.
+
+## 🚀 Key Features
+
+### Multi-Interface Support
+- **Command-Line Interface**: Interactive prompts and automated configuration
+- **Tauri Frontend**: Modern web-based GUI for visual project management
+- **Configuration Files**: TOML-based automation for CI/CD and batch operations
+
+### Advanced Build Capabilities
+- **Debug & Release Builds**: Choose optimal build profiles for your use case
+- **Dependency Vendoring**: Offline installations with all dependencies included
+- **Cross-Platform Support**: Works on Windows, macOS, and Linux
+- **Flexible Installation**: User-local, system-wide, or custom directory installations
+
+### Starlark Scripting Integration
+- **Embedded Scripting**: Customize build and installation logic with Starlark
+- **Extensible Configuration**: Beyond simple TOML with programmable workflows
+- **Automation Support**: Perfect for complex CI/CD pipelines
+
+## 📦 Installation
+
+### Prerequisites
+
+- **Rust toolchain** (1.70 or later)
+- **Cargo** (included with Rust)
+- **Node.js and npm** (for Tauri frontend development)
+
+### Building from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/Big-Sky-Tech/Black-Anvil.git
+cd Black-Anvil
+
+# Build the CLI tool
+cargo build --release
+
+# The binary will be available at ./target/release/black-anvil
+```
+
+### Building the Tauri Frontend
+
+```bash
+# Navigate to the Tauri app directory
+cd tauri-app
+
+# Install dependencies
+npm install
+
+# Build the Tauri application
+npm run tauri build
+```
+
+## 🎯 Quick Start
+
+### Interactive Mode
+
+Run Black Anvil without arguments to enter interactive mode:
+
+```bash
+./target/release/black-anvil
+```
+
+You'll be prompted for:
+- **Project path**: Directory containing your Rust project
+- **Build type**: Choose between `debug` or `release`
+- **Installation directory**: Where to install the compiled binary
+- **Vendor dependencies**: Whether to include offline dependencies
+
+### Configuration File Mode
+
+Create a `config.toml` file:
+
+```toml
+project_path = "/path/to/your/rust/project"
+build_type = "release"
+install_dir = "/usr/local/bin"
+vendor = false
+```
+
+Run with the configuration:
+
+```bash
+./target/release/black-anvil config.toml
+```
+
+### Tauri GUI Mode
+
+Launch the graphical interface:
+
+```bash
+cd tauri-app
+npm run tauri dev
+```
+
+The GUI provides:
+- Visual project selection
+- Build configuration options
+- Installation progress tracking
+- Advanced settings management
+
+## 📖 Detailed Documentation
+
+- **[USAGE.md](USAGE.md)** - Step-by-step usage guide with examples
+- **[CONFIG.md](CONFIG.md)** - Complete configuration reference
+- **[examples/](examples/)** - Working configuration examples
+- **[STARLARK.md](STARLARK.md)** - Starlark scripting guide
+
+## 🔧 Configuration Options
+
+| Option | Type | Description | Default |
+|--------|------|-------------|---------|
+| `project_path` | String | Path to Rust project directory | Current directory |
+| `build_type` | String | Build profile (`debug` or `release`) | Interactive prompt |
+| `install_dir` | String | Installation destination | `./install` |
+| `vendor` | Boolean | Include vendored dependencies | `false` |
+
+## 🌟 Example Use Cases
+
+### Development Workflow
+- Quick debug builds for testing
+- User-local installations for development tools
+- Automated builds with dependency caching
+
+### Production Deployment
+- Release builds with optimizations
+- System-wide installations for servers
+- Offline deployments with vendored dependencies
+
+### CI/CD Integration
+- Automated builds in containerized environments
+- Reproducible builds with locked dependencies
+- Multi-platform deployment automation
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**Build fails with "cargo not found"**
+- Ensure Rust and Cargo are installed and in your PATH
+- Try `rustup update` to update your Rust installation
+
+**Permission denied during installation**
+- Use `sudo` for system-wide installations
+- Choose user-local directories like `~/.local/bin`
+- Verify target directory permissions
+
+**Missing dependencies in offline mode**
+- Run `cargo vendor` in your project first
+- Ensure all dependencies are properly cached
+- Check that `vendor` option is enabled
+
+## 🤝 Contributing
+
+Black Anvil is an open-source project welcoming contributions:
+
+1. **Fork the repository**
+2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
+3. **Make your changes** with tests and documentation
+4. **Commit your changes** (`git commit -m 'Add amazing feature'`)
+5. **Push to the branch** (`git push origin feature/amazing-feature`)
+6. **Open a Pull Request**
+
+### Development Setup
+
+```bash
+# Clone your fork
+git clone https://github.com/your-username/Black-Anvil.git
+cd Black-Anvil
+
+# Build and test
+cargo build
+cargo test
+
+# For frontend development
+cd tauri-app
+npm install
+npm run dev
+```
+
+## 📄 License
+
+This project is licensed under the [LICENSE](LICENSE) file in the repository.
+
+## 🔗 Links
+
+- **Documentation**: [docs/](docs/)
+- **Examples**: [examples/](examples/)
+- **Issues**: [GitHub Issues](https://github.com/Big-Sky-Tech/Black-Anvil/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Big-Sky-Tech/Black-Anvil/discussions)
 
 ## Features
 
