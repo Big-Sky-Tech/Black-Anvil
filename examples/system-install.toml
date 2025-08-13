@@ -1,0 +1,7 @@
+# System Installation Configuration
+# Install binaries system-wide (requires sudo)
+
+project_path = "."
+build_type = "release"
+install_dir = "/usr/local/bin"
+vendor = false

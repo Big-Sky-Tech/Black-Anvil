@@ -1,0 +1,7 @@
+# Offline Installation Configuration
+# Includes vendored dependencies for offline environments
+
+project_path = "."
+build_type = "release"
+install_dir = "./offline-install"
+vendor = true
