@@ -25,3 +25,7 @@ target
 
 /target
 .DS_Store
+
+# Test installation directories
+test_install*/
+install/

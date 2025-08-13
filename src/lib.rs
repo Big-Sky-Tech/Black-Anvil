@@ -40,7 +40,7 @@ pub fn copy_binary(project_path: &Path, build_type: &str, install_dir: &Path) ->
     let package_name = cargo_toml.package.name;
 
     let binary_name = if cfg!(windows) {
-        format!("{}.exe", package_name)
+        format!("{package_name}.exe")
     } else {
         package_name
     };
@@ -75,7 +75,10 @@ pub fn vendor_dependencies(project_path: &Path, install_dir: &Path) -> Result<()
     let vendor_dir = project_path.join("vendor");
     let dest = install_dir.join("vendor");
     if !vendor_dir.exists() {
-        anyhow::bail!("Vendor directory does not exist after cargo vendor: {}", vendor_dir.display());
+        anyhow::bail!(
+            "Vendor directory does not exist after cargo vendor: {}",
+            vendor_dir.display()
+        );
     }
     copy_dir(&vendor_dir, &dest)?;
     Ok(())
@@ -84,8 +87,9 @@ pub fn vendor_dependencies(project_path: &Path, install_dir: &Path) -> Result<()
 fn copy_dir(src: &Path, dst: &Path) -> Result<()> {
     fs::create_dir_all(dst)
         .with_context(|| format!("Failed to create directory {}", dst.display()))?;
-    for entry in fs::read_dir(src)
-        .with_context(|| format!("Failed to read directory {}", src.display()))? {
+    for entry in
+        fs::read_dir(src).with_context(|| format!("Failed to read directory {}", src.display()))?
+    {
         let entry = entry?;
         let file_type = entry.file_type()?;
         let dest_path = dst.join(entry.file_name());
