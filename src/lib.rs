@@ -74,6 +74,9 @@ pub fn vendor_dependencies(project_path: &Path, install_dir: &Path) -> Result<()
     }
     let vendor_dir = project_path.join("vendor");
     let dest = install_dir.join("vendor");
+    if !vendor_dir.exists() {
+        anyhow::bail!("Vendor directory does not exist after cargo vendor: {}", vendor_dir.display());
+    }
     copy_dir(&vendor_dir, &dest)?;
     Ok(())
 }
