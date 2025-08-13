@@ -1,0 +1,21 @@
+{
+  "$schema": "https://tauri.app/schema.json",
+  "productName": "Black Anvil",
+  "version": "0.1.0",
+  "identifier": "com.big-sky-tech.black-anvil",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Black Anvil",
+        "width": 900,
+        "height": 700
+      }
+    ]
+  }
+}

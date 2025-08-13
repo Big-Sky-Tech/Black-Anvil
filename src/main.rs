@@ -64,7 +64,7 @@ fn main() -> Result<()> {
     )?;
 
     if vendor {
-        vendor_dependencies(Path::new(&project_path), &vendor_dest)?;
+        vendor_dependencies(Path::new(&project_path), Path::new(&install_dir))?;
     }
 
     println!(
