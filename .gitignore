@@ -25,3 +25,21 @@ target
 
 /target
 .DS_Store
+
+# Black Anvil specific
+vendor/
+**/vendor/
+install/
+**/install/
+dev-install/
+**/dev-install/
+prod-install/
+**/prod-install/
+offline-install/
+**/offline-install/
+partial-test/
+**/partial-test/
+portable/
+**/portable/
+artifacts/
+**/artifacts/
