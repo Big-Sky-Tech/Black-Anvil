@@ -62,3 +62,35 @@ pub fn copy_binary(project_path: &Path, build_type: &str, install_dir: &Path) ->
 
     Ok(dest)
 }
+
+pub fn vendor_dependencies(project_path: &Path, install_dir: &Path) -> Result<()> {
+    let status = Command::new("cargo")
+        .arg("vendor")
+        .current_dir(project_path)
+        .status()
+        .context("Failed to run cargo vendor")?;
+    if !status.success() {
+        anyhow::bail!("cargo vendor failed");
+    }
+    let vendor_dir = project_path.join("vendor");
+    let dest = install_dir.join("vendor");
+    copy_dir(&vendor_dir, &dest)?;
+    Ok(())
+}
+
+fn copy_dir(src: &Path, dst: &Path) -> Result<()> {
+    fs::create_dir_all(dst)
+        .with_context(|| format!("Failed to create directory {}", dst.display()))?;
+    for entry in fs::read_dir(src)
+        .with_context(|| format!("Failed to read directory {}", src.display()))? {
+        let entry = entry?;
+        let file_type = entry.file_type()?;
+        let dest_path = dst.join(entry.file_name());
+        if file_type.is_dir() {
+            copy_dir(&entry.path(), &dest_path)?;
+        } else {
+            fs::copy(entry.path(), dest_path)?;
+        }
+    }
+    Ok(())
+}
