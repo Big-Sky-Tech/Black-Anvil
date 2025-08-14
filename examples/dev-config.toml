@@ -1,0 +1,7 @@
+# Development Configuration
+# Fast builds with debug symbols for local development
+
+project_path = "."
+build_type = "debug"
+install_dir = "./dev-install"
+vendor = false

@@ -4,6 +4,10 @@ use std::process::Command;
 
 use anyhow::{Context, Result};
 use serde::Deserialize;
+// Starlark scripting
+use starlark::environment::{Globals, Module};
+use starlark::eval::Evaluator;
+use starlark::syntax::{AstModule, Dialect};
 
 #[derive(Deserialize)]
 struct CargoPackage {
@@ -30,7 +34,6 @@ pub fn build_project(project_path: &Path, build_type: &str) -> Result<()> {
     }
     Ok(())
 }
-
 pub fn copy_binary(project_path: &Path, build_type: &str, install_dir: &Path) -> Result<PathBuf> {
     let cargo_toml_path = project_path.join("Cargo.toml");
     let cargo_toml_str = fs::read_to_string(&cargo_toml_path)
@@ -61,6 +64,22 @@ pub fn copy_binary(project_path: &Path, build_type: &str, install_dir: &Path) ->
     })?;
 
     Ok(dest)
+}
+
+/// Runs a Starlark script and returns the result as a string.
+pub fn run_starlark(script: &str) -> Result<String> {
+    // Parse script
+    let ast = AstModule::parse("<inline>", script.to_owned(), &Dialect::Standard)
+        .map_err(|e| anyhow::anyhow!(e))?;
+    // Prepare module and globals
+    let module = Module::new();
+    let globals = Globals::standard();
+    // Evaluate
+    let mut eval = Evaluator::new(&module);
+    let res = eval
+        .eval_module(ast, &globals)
+        .map_err(|e| anyhow::anyhow!(e))?;
+    Ok(format!("{}", res))
 }
 
 pub fn vendor_dependencies(project_path: &Path, install_dir: &Path) -> Result<()> {

@@ -1,0 +1,20 @@
+[package]
+name = "black-anvil-ui"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "tauri_backend"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+# Tauri 2
+tauri = { version = "2.0.0", features = [] }
+# Wire to the core library in the workspace
+black-anvil = { path = "../../" }
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }

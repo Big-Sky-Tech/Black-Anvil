@@ -1,0 +1,7 @@
+# User Installation Configuration
+# Install tools in user's local bin directory
+
+project_path = "."
+build_type = "release"
+install_dir = "~/.local/bin"
+vendor = false

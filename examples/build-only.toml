@@ -1,0 +1,4 @@
+# Build Type Only Configuration
+# Only specifies build type, prompts for other options
+
+build_type = "release"
