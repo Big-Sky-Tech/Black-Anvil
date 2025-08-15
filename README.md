@@ -43,6 +43,16 @@ cargo build --release
 # The binary will be available at ./target/release/black-anvil
 ```
 
+### Self-installer
+
+Build and install Black Anvil using the project itself:
+
+```bash
+./scripts/self_installer.sh /usr/local/bin
+```
+
+The argument specifies the installation directory and defaults to `/usr/local/bin`.
+
 ### Building the Tauri Frontend
 
 ```bash
